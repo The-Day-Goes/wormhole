@@ -1,3 +1,5 @@
+var THREE = require("three");
+
 var PlayerControls = require('./playercontrols');
 
 function PlayerControlsTouch(player, domElement)
@@ -21,6 +23,9 @@ function PlayerControlsTouch(player, domElement)
   domElement.addEventListener('touchcancel', touchEnd, false);
 
   function touchStart(event) {
+    // Preventing default behavior so that the user doesn't accidentally scroll the viewport
+    event.preventDefault();
+
     // A touch is a sign that touch controls can be used.
     self.active = true;
 
@@ -47,7 +52,7 @@ function PlayerControlsTouch(player, domElement)
   function addRotationSpeed(touch) {
     var touchInfo = currentTouches[touch.identifier];
 
-    self.rotationSpeedX -= 4 * (touchInfo.current.x - touchInfo.previous.x) / domElement.clientHeight;
+    self.rotationSpeedX -= 6 * (touchInfo.current.x - touchInfo.previous.x) / domElement.clientHeight;
   }
 
   function addVelocityTouch(touch) {
@@ -60,7 +65,7 @@ function PlayerControlsTouch(player, domElement)
     velocityTouches[touch.identifier] = true;
   }
 
-  function removeVelocityTouch(touch) { 
+  function removeVelocityTouch(touch) {
     delete velocityTouches[touch.identifier];
 
     if (Object.keys(velocityTouches).length === 0) {
