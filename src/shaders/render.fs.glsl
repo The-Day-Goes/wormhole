@@ -8,8 +8,14 @@ uniform float uRadiusSquared;
 uniform float uThroatLength;
 
 uniform sampler2D uIntegrationBuffer;
-uniform samplerCube uSkybox1;
-uniform samplerCube uSkybox2;
+
+#ifdef EQUIRECTANGULAR
+  uniform sampler2D uSkybox1;
+  uniform sampler2D uSkybox2;
+#else
+  uniform samplerCube uSkybox1;
+  uniform samplerCube uSkybox2;
+#endif
 
 uniform vec2 uAngleRange;
 
@@ -81,10 +87,25 @@ void adjustDirection(inout State3D ray) {
   ray.direction.z /= r * sin(ray.position.y);
 }
 
+vec2 cubeToEquirectangular(vec3 coord)
+{
+  coord = normalize(coord);
+
+  float u = 0.5 - (atan(coord.z, coord.x) / TWO_PI);
+  float v = 0.5 + asin(coord.y) / PI;
+  return vec2(u, v);
+}
+
 // Get the final color given a position and direction.
 vec4 getColor(State3D ray, vec3 cubeCoord) {
+#ifdef EQUIRECTANGULAR
+  vec2 uv = cubeToEquirectangular(cubeCoord);
+  vec3 skybox1Color = texture2D(uSkybox1, uv).rgb;
+  vec3 skybox2Color = texture2D(uSkybox2, uv).rgb;
+#else
   vec3 skybox1Color = textureCube(uSkybox1, cubeCoord).rgb;
   vec3 skybox2Color = textureCube(uSkybox2, cubeCoord).rgb;
+#endif
 
   float merge = 0.5 - clamp(ray.position.x, -0.5, 0.5);
   vec3 color = mix(skybox1Color, skybox2Color, merge);

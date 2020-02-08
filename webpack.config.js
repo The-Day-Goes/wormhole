@@ -1,16 +1,17 @@
-var webpack = require("webpack");
+const path = require('path')
 
 module.exports = {
   entry: "./src/main.js",
   output: {
-    path: "./dist",
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
     filename: "dist.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.glsl$/,
-        loader: 'webpack-glsl'
+        use: 'webpack-glsl-loader'
       }
     ]
   }

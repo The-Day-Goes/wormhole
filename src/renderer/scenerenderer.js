@@ -5,23 +5,27 @@ var PixelShaderRenderer = require("./pixelshaderrenderer");
 var glSupport = require("../util/glsupport");
 var floatRenderTargetSupported = glSupport.floatRenderTargetSupported;
 var smallPOTRenderingSupported = glSupport.smallPOTRenderingSupported;
+var useEquirectangularTextures = true
 
 function SceneRenderer(space) {
 
   // Init skybox textures
-  function loadSkybox(path, ext) {
-    ext = ext || "jpg";
-    var files = [
-      "sky_pos_x", "sky_neg_x",
-      "sky_pos_y", "sky_neg_y",
-      "sky_pos_z", "sky_neg_z"
-    ].map(function(file) {
-      return file + "." + ext;
-    });
+  function loadSkybox(path) {
+    if (useEquirectangularTextures) {
+      return new THREE.TextureLoader().load(path + "equi.png");
+    } else {
+      var files = [
+        "sky_pos_x", "sky_neg_x",
+        "sky_pos_y", "sky_neg_y",
+        "sky_pos_z", "sky_neg_z"
+      ].map(function(file) {
+        return file + ".jpg";
+      });
 
-    return new THREE.CubeTextureLoader()
-      .setPath(path)
-      .load(files);
+      return new THREE.CubeTextureLoader()
+        .setPath(path)
+        .load(files);
+    }
   }
 
   var skybox1 = loadSkybox("textures/skybox1/"),
@@ -40,6 +44,10 @@ function SceneRenderer(space) {
   var commonDefines = {
     RENDER_TO_FLOAT_TEXTURE: ~~floatRenderTargetSupported
   };
+
+  if (useEquirectangularTextures) {
+    commonDefines.EQUIRECTANGULAR = 1
+  }
 
   // Init integration stuff
 
