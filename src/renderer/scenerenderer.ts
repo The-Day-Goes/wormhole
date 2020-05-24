@@ -1,21 +1,22 @@
 import { PixelShaderRenderer } from './pixelshaderrenderer'
 
-import { floatRenderTargetSupported, smallPOTRenderingSupported } from '../util/glsupport'
+import { glProfile } from '../util/glsupport'
 import { WormholeSpace } from '../wormholespace'
 import {
-  CubeTextureLoader,
+  Vector2,
   Vector3,
   Matrix4,
-  Vector2,
+  Quaternion,
+  MathUtils,
   WebGLRenderTarget,
+  CubeTexture,
+  CubeTextureLoader,
   ClampToEdgeWrapping,
   RGBAFormat,
   FloatType,
-  UnsignedByteType,
   RawShaderMaterial,
   WebGLRenderer,
-  Object3D,
-  CubeTexture
+  HalfFloatType
 } from 'three'
 
 import integrationVertexShader from '../shaders/integration.vs.glsl'
@@ -23,6 +24,8 @@ import integrationFragmentShader from '../shaders/integration.fs.glsl'
 import renderVertexShader from '../shaders/render.vs.glsl'
 import renderFragmentShader from '../shaders/render.fs.glsl'
 import { generateMipmaps } from '../util/mipmaps'
+import { Player } from '../player'
+import { UnitXNeg } from '../mathutil'
 
 function loadSkybox(path: string, ext: string = 'jpg') {
   const files = [
@@ -54,17 +57,15 @@ function loadSkybox(path: string, ext: string = 'jpg') {
   return cubeTexture
 }
 
-// The minimum field of view (horizontal and vertical)
-const MIN_FOV = 1
+const tempQuaternion = new Quaternion()
+const orientationMatrix = new Matrix4()
+const aspectFixMatrix = new Matrix4()
 
 export class SceneRenderer {
   commonUniforms: any
   integrationBuffer: WebGLRenderTarget
   integrationStep: PixelShaderRenderer
   renderStep: PixelShaderRenderer
-
-  aspectFix = new Matrix4()
-  halfDiagFov = 1
 
   constructor(space: WormholeSpace) {
     // Init skybox textures
@@ -82,19 +83,20 @@ export class SceneRenderer {
 
     // Init defines
     const commonDefines = {
-      RENDER_TO_FLOAT_TEXTURE: ~~floatRenderTargetSupported
+      RENDER_TO_FLOAT_TEXTURE: ~~(glProfile.renderTargetType === FloatType || glProfile.renderTargetType === HalfFloatType)
     }
 
     // Init integration stuff
     // Quirk: some older GPUs do not support rendering to textures with a side of 1, 2, 4 or 8 pixels long.
-    const width = smallPOTRenderingSupported ? 2048 : 1024
-    const height = smallPOTRenderingSupported ? 1 : 3
+    // To keep the performance high, we lower the resolution for those GPUs as well
+    const width = glProfile.smallPotRendering ? 2048 : 1024
+    const height = glProfile.smallPotRendering ? 1 : 3
 
     this.integrationBuffer = new WebGLRenderTarget(width, height, {
       wrapS: ClampToEdgeWrapping,
       wrapT: ClampToEdgeWrapping,
       format: RGBAFormat,
-      type: floatRenderTargetSupported ? FloatType : UnsignedByteType
+      type: glProfile.renderTargetType
     })
 
     const integrationShader = new RawShaderMaterial({
@@ -124,26 +126,30 @@ export class SceneRenderer {
     this.renderStep = new PixelShaderRenderer(renderShader)
   }
 
-  render (renderer: WebGLRenderer, camera: Object3D) {
+  render (renderer: WebGLRenderer, player: Player) {
+    const camera = player.eyes
+
+    aspectFixMatrix.elements[0] = camera.projectionMatrixInverse.elements[0]
+    aspectFixMatrix.elements[5] = camera.projectionMatrixInverse.elements[5]
 
     // Update the angle range
-    const orientation = new Matrix4()
-    orientation.makeRotationFromQuaternion(camera.quaternion)
+    orientationMatrix.makeRotationFromQuaternion(camera.getWorldQuaternion(tempQuaternion))
 
     const zAxis = new Vector3()
-    zAxis.setFromMatrixColumn(orientation, 2)
+    zAxis.setFromMatrixColumn(orientationMatrix, 2)
 
-    const angleFromZ = zAxis.angleTo(new Vector3(1, 0, 0))
+    const angleFromZ = zAxis.angleTo(UnitXNeg)
 
+    const halfDiagFov = Math.atan(Math.tan(MathUtils.DEG2RAD * camera.fov / 2) * Math.sqrt(camera.aspect * camera.aspect + 1))
     this.commonUniforms.uAngleRange.value.set(
-      Math.max(0, angleFromZ - this.halfDiagFov),
-      Math.min(Math.PI, angleFromZ + this.halfDiagFov)
+      Math.max(0, angleFromZ - halfDiagFov),
+      Math.min(Math.PI, angleFromZ + halfDiagFov)
     )
 
     // Update the camera-related uniforms
-    this.commonUniforms.uCameraPosition.value.copy(camera.position)
-    this.commonUniforms.uCameraOrientation.value.copy(orientation)
-    this.commonUniforms.uCameraOrientation.value.multiply(this.aspectFix)
+    this.commonUniforms.uCameraPosition.value.copy(player.position)
+    this.commonUniforms.uCameraOrientation.value.copy(orientationMatrix)
+    this.commonUniforms.uCameraOrientation.value.multiply(aspectFixMatrix)
 
     // Integrate...
     renderer.setRenderTarget(this.integrationBuffer)
@@ -155,28 +161,6 @@ export class SceneRenderer {
   }
 
   setSize (width: number, height: number) {
-    let vx: number
-    let vy: number
-    if (width > height) {
-      vx = width / height
-      vy = 1
-    }
-    else {
-      vx = 1
-      vy = height / width
-    }
 
-    const tanHalfFov = Math.tan(MIN_FOV / 2)
-    const vz = 1 / tanHalfFov
-
-    // Half the diagonal FOV
-    this.halfDiagFov = Math.atan(Math.sqrt(vx * vx + vy * vy) * tanHalfFov)
-
-    this.aspectFix.set(
-      vx,  0, 0, 0,
-      0, vy, 0, 0,
-      0,  0, vz, 0,
-      0,  0, 0, 1
-    )
   }
 }
