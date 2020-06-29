@@ -1,7 +1,7 @@
 import { Vector3, Quaternion, MathUtils, Euler } from 'three'
-import { Player } from './player'
-import { PlayerControls } from './playercontrols'
-import { UnitZ } from './mathutil'
+import { Player } from './Player'
+import { PlayerControls } from './PlayerControls'
+import { UnitZ } from './MathUtils'
 
 interface TouchData {
   start: {
@@ -45,7 +45,7 @@ export class PlayerControlsTouch extends PlayerControls {
     this.onDeviceOrientationChange = this.onDeviceOrientationChange.bind(this)
   }
 
-  public enable () {
+  protected onEnable () {
     this.currentTouches = {}
     this.velocityTouches = {}
     this.forwardSpeed = 0
@@ -58,7 +58,7 @@ export class PlayerControlsTouch extends PlayerControls {
     this.domElement.addEventListener('touchcancel', this.onTouchEnd, false)
   }
 
-  public disable () {
+  protected onDisable () {
     this.domElement.removeEventListener('contextmenu', this.onContextMenu, false)
     this.domElement.removeEventListener('touchstart', this.onTouchStart, false)
     this.domElement.removeEventListener('touchmove', this.onTouchMove, false)

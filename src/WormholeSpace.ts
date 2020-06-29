@@ -1,5 +1,5 @@
 import { Vector3, Quaternion, Matrix3, Matrix4 } from 'three'
-import { Matrix3Util } from './mathutil'
+import { Matrix3Util } from './MathUtils'
 
 const deltaPosition = new Vector3()
 const deltaDirection = new Vector3()
@@ -208,7 +208,9 @@ export class WormholeSpace {
       this.adjustCartesianDirection(object.position, object.__tetrad[1])
     }
 
-    this.step(object, direction, distance)
+    for (let i = 0; i < 10; i++) {
+      this.step(object, direction, distance / 10)
+    }
 
     this.adjustSphericalDirection(object.position, direction)
 
