@@ -1,201 +1,46 @@
 <!DOCTYPE html>
 <html>
+<!--
+  
+Please stop looking at website source code. It isn't that cool.
+Listen to our music instead! 
+
+-- The Day Goes
+
+ -->
 <head>
-  <title>Into a wormhole</title>
+  <title>Washcycle Wormhole</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="description" content="Experience the space time curvature and strange lensing effects of a 3D wormhole in your browser.">
-  <style>
-  *, *::before, *::after {
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  body, html {
-    width: 100%;
-    height: 100%;
-    background: #000;
-  }
-
-  body {
-    background: #000;
-    color: #eee;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
-  }
-
-  p {
-    margin-bottom: 0.75em;
-    max-width: 50em;
-  }
-
-  a {
-    color: #387aff;
-  }
-
-  canvas {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    display: block;
-  }
-
-  .screen {
-    padding: 0 1em;
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    text-shadow: 0 0 0.25em #000;
-    background: rgba(0,0,0,0.25);
-  }
-
-  .swipe-icon-wrapper {
-    width: 8em;
-    height: 8em;
-    margin-top: 2em;
-    position: relative;
-  }
-
-  .swipe-icon {
-    width: 4em;
-    height: 4em;
-    fill: #fff;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    animation: mobile-instructions 7s ease-in-out infinite;
-  }
-
-  @keyframes mobile-instructions {
-      0% { top: 50%; left:  50%; opacity: 0; }
-      5% { top: 50%; left:  50%; opacity: 1; }
-     15% { top:   0; left:  50%; opacity: 1; }
-     20% { top:   0; left:  50%; opacity: 0; }
-
-     25% { top: 50%; left:  50%; opacity: 0; }
-     30% { top: 50%; left:  50%; opacity: 1; }
-     40% { top:   0; left:  50%; opacity: 1; }
-     45% { top:   0; left:  50%; opacity: 0; }
-
-     50% { top: 50%; left:  50%; opacity: 0; }
-     55% { top: 50%; left:  50%; opacity: 1; }
-     65% { top: 50%; left:    0; }
-     85% { top: 50%; left: 100%; }
-     95% { top: 50%; left:  50%; opacity: 1; }
-    100% { top: 50%; left:  50%; opacity: 0; }
-  }
-
-  .screen.hidden {
-    opacity: 0;
-    overflow: auto;
-    visibility: hidden;
-
-    pointer-events: none;
-  }
-
-  .title {
-    font-size: 4em;
-    margin: 0 0 0.5em;
-  }
-
-  @media (max-width: 800px) {
-    .title {
-      font-size: 3em;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .title {
-      font-size: 2em;
-    }
-  }
-
-  .intro {
-    margin-bottom: 0.75em;
-  }
-
-  .dismiss-info {
-    margin: 2em;
-  }
-
-  .ui {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    text-align: left;
-    padding: 0.5em;
-    background: rgba(0,0,0,0.5);
-    transition: all 0.2s ease;
-  }
-
-  .diagram {
-    cursor: pointer;
-    font-size: 0.8em;
-  }
-
-  .start-vr {
-    font-size: 1.5em;
-    position: absolute;
-    bottom: 0.5em;
-    right: 0;
-    font-family: inherit;
-    color: #fff;
-    background: #333;
-    border: none;
-    border-radius: 0.5em 0 0 0.5em;
-    padding: 1em;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  .start-vr:hover {
-    background: #454545;
-  }
-
-  .vr-icon {
-    display: block;
-    width: 2em;
-    fill: currentColor;
-  }
-
-  .start-vr.hidden {
-    display: none;
-  }
-
-  .ui.hidden, .screen:not(.hidden) ~ .ui {
-    opacity: 0;
-  }
-
-  .ui.hidden:hover {
-    opacity: 1;
-  }
-  </style>
+  <meta name="description" content="Experience mind-bending spacetime effects by entering the Washcycle Wormhole.">
+  <link href="main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap&effect=anaglyph" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,500&display=swap&effect=anaglyph" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/50c158ceef.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="wormhole128.mp3" type="audio/mpeg">
+  </audio>
 <div id="canvas-wrapper">
 </div>
 
 <div class="splash screen">
-  <h1 class="title">Into a wormhole</h1>
-  <p class="intro">Wormholes are weird. Wormholes with “throats” are even weirder. Here you can experience that weirdness for&nbsp;yourself.</p>
-  <p class="intro">For more (mathematical) details, check the <a href="https://github.com/sirxemic/wormhole#readme" target="_blank">Github repo</a>.</p>
-  <p class="dismiss-info">Click or tap anywhere to continue</p>
+
+  <h1 class="title scramble font-effect-anaglyph">WASHCYCLE WORMHOLE</h1>
+  <p class="intro">an interactive audio-visual experience by</p>
+  <h3 class="title subtitle font-effect-anaglyph">THE DAY GOES</h3>
+  <div class="social-media">
+    <a href="https://instagram.com/the_daygoes/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    <a href="https://open.spotify.com/artist/1OsSYnwC0OL9s1rjekDEVe" target="_blank"><i class="fab fa-spotify fa-2x"></i></a>
+    <a href="https://thedaygoes.bandcamp.com/" target="_blank"><i class="fab fa-bandcamp fa-2x"></i></a>
+    <a href="https://music.apple.com/gb/artist/the-day-goes/1509380838" target="_blank"><i class="fab fa-itunes fa-2x"></i></a>
+    <a href="https://soundcloud.com/the-day-goes" target="_blank"><i class="fab fa-soundcloud fa-2x"></i></a>
+    <a href="https://www.youtube.com/channel/UCKjE9G_ofm3nkD9oWVXt-Cg" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+  </div>
+  <p class="dismiss-info">click or tap anywhere to continue</p>
+  <p class="intro">try the wormhole in VR!</p>
+  <p class="intro">Simulation code: <a href="https://sirxemic.com/" target="_blank">sirxemic</a> for his original <a href="https://github.com/sirxemic/wormhole" target="_blank">wormhole simulation .</p>
 </div>
 
 <div class="mobile-instructions screen hidden">
@@ -208,7 +53,7 @@
 </div>
 
 <div class="ui">
-  <label class="diagram"><input type="checkbox" name="hide-ui"> Hide diagram &amp; lift restricted movement</label>
+  <label class="diagram"><input type="checkbox" name="hide-ui"> hide diagram &amp; lift restricted movement</label>
 </div>
 
 <button class="start-vr hidden">
@@ -217,7 +62,8 @@
   </svg>
 </button>
 
-<script src="dist/main.js"></script>
+<script src="main.js" type="text/javascript"></script>
+<script src="scrambler.js" type="text/javascript"></script>
 
 </body>
 </html>
