@@ -216,5 +216,5 @@
     bottom: 0;
     position: fixed;
     right: 0;
-    opacity: 0 !important;
+    opacity: 0.5 !important;
   }
