@@ -211,3 +211,10 @@
   .ui.hidden:hover {
     opacity: 1;
   }
+
+  #audio {
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    opacity: 0!;
+  }

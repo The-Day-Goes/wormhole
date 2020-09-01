@@ -19,8 +19,6 @@ Listen to our music instead!
   <script src="https://kit.fontawesome.com/50c158ceef.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <iframe src="wormhole128.mp3" allow="autoplay"  id="iframeAudio">
-</iframe> 
 <div id="canvas-wrapper">
 </div>
 
@@ -38,7 +36,6 @@ Listen to our music instead!
     <a href="https://www.youtube.com/channel/UCKjE9G_ofm3nkD9oWVXt-Cg" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
   </div>
   <p class="dismiss-info">click or tap anywhere to continue</p>
-  
 </div>
 
 <div class="mobile-instructions screen hidden">
@@ -51,7 +48,11 @@ Listen to our music instead!
 </div>
 
 <div class="ui">
-  <label class="diagram"><input type="checkbox" name="hide-ui"> hide diagram &amp; lift restricted movement</label>
+  <label class="diagram"><input type="checkbox" name="hide-ui"> hide diagram // lift restricted movement</label>
+  <audio id="audio" controls autoplay loop>
+  <source src="wormhole128.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <button class="start-vr hidden">
