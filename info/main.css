@@ -1,1 +1,124 @@
-*,::after,::before{margin:0;box-sizing:border-box}body,html{width:100%;height:100%;background:#000}body{background:#000;color:#eee;font-family:-apple-system,Lora,serif background-image: url('https://daygoes.com/assets/wormhole_bg.jpg');background-repeat:no-repeat;background-position:center center}p{margin-bottom:.75em;max-width:50em}a{color:#387aff}li{text-align:left}.screen{padding:0 1em;overflow:hidden;position:absolute;left:0;top:0;right:0;bottom:0;z-index:10;transition:all .3s ease;display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center;text-shadow:0 0 .25em #000;background:rgba(0,0,0,.25)}@keyframes mobile-instructions{0%{top:50%;left:50%;opacity:0}5%{top:50%;left:50%;opacity:1}15%{top:0;left:50%;opacity:1}20%{top:0;left:50%;opacity:0}25%{top:50%;left:50%;opacity:0}30%{top:50%;left:50%;opacity:1}40%{top:0;left:50%;opacity:1}45%{top:0;left:50%;opacity:0}50%{top:50%;left:50%;opacity:0}55%{top:50%;left:50%;opacity:1}65%{top:50%;left:0}85%{top:50%;left:100%}95%{top:50%;left:50%;opacity:1}100%{top:50%;left:50%;opacity:0}}.screen.hidden{opacity:0;overflow:auto;visibility:hidden;pointer-events:none}.title{font-size:4em;margin:0 0 .5em;font-family:Bungee,cursive}.subtitle{font-size:2em;margin:.5em 0 .5em;font-family:Lora,serif;font-weight:500;font-style:italic}@media (max-width:800px){.title{font-size:3em}}@media (max-width:480px){.title{font-size:2em}}.intro{margin-bottom:.75em;font-family:Lora,serif;font-weight:400;font-style:italic}.screen:not(.hidden)~.ui,.ui.hidden{opacity:0}.footer-link{position:fixed;left:50%;bottom:20px;transform:translate(-50%,-50%);margin:0 auto;font-family:Lora,serif;font-weight:400;font-size:.75em}.fas{padding:.25em;text-align:center;text-decoration:none;color:#fff}.fas:hover{opacity:.7}
+
+
+*,
+::after,
+::before {
+	margin: 0;
+	box-sizing: border-box
+}
+
+body,
+html {
+	width: 100%;
+	height: 100%;
+	background: #000
+}
+
+body {
+	background: #000;
+	color: #eee;
+	font-family: -apple-system, Lora, serif;
+	background-image: url('https://daygoes.com/assets/wormhole_bg.jpg');
+	background-repeat: no-repeat;
+	background-position: center center
+}
+
+p {
+	margin-bottom: .75em;
+	max-width: 50em
+}
+
+a {
+	color: #387aff
+}
+
+li {
+	text-align: left
+}
+
+.screen {
+	padding: 0 1em;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	transition: all .3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	text-shadow: 0 0 .25em #000;
+	background: rgba(0, 0, 0, .25)
+}
+
+.screen.hidden {
+	opacity: 0;
+	overflow: auto;
+	visibility: hidden;
+	pointer-events: none
+}
+
+.title {
+	font-size: 4em;
+	margin: 0 0 .5em;
+	font-family: Bungee, cursive
+}
+
+.subtitle {
+	font-size: 2em;
+	margin: .5em 0 .5em;
+	font-family: Lora, serif;
+	font-weight: 500;
+	font-style: italic
+}
+
+@media (max-width:800px) {
+	.title {
+		font-size: 3em
+	}
+}
+
+@media (max-width:480px) {
+	.title {
+		font-size: 2em
+	}
+}
+
+.intro {
+	margin-bottom: .75em;
+	font-family: Lora, serif;
+	font-weight: 400;
+	font-style: italic
+}
+
+.screen:not(.hidden)~.ui,
+.ui.hidden {
+	opacity: 0
+}
+
+.footer-link {
+	position: fixed;
+	left: 50%;
+	bottom: 20px;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
+	font-family: Lora, serif;
+	font-weight: 400;
+	font-size: .75em
+}
+
+.fas {
+	padding: .25em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff
+}
+
+.fas:hover {
+	opacity: .7
+}
+
