@@ -1,34 +1,3 @@
-
-
-*,
-::after,
-::before {
-	margin: 0;
-	box-sizing: border-box
-}
-
-body,
-html {
-	width: 100%;
-	height: 100%;
-	background: #000
-}
-
-body {
-	background: #000;
-	color: #eee;
-	font-family: -apple-system, BlinkMacSystemFont, serif
-}
-
-p {
-	margin-bottom: .75em;
-	max-width: 50em
-}
-
-a {
-	color: #387aff
-}
-
 canvas {
 	position: fixed;
 	left: 0;
@@ -36,25 +5,6 @@ canvas {
 	bottom: 0;
 	right: 0;
 	display: block
-}
-
-.screen {
-	padding: 0 1em;
-	overflow: hidden;
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 10;
-	transition: all .3s ease;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-	align-items: center;
-	text-shadow: 0 0 .25em #000;
-	background: rgba(0, 0, 0, .25)
 }
 
 .swipe-icon-wrapper {
@@ -152,17 +102,12 @@ canvas {
 }
 
 .title {
-	font-size: 4em;
-	margin: 0 0 .5em;
 	font-family: Bungee, cursive
 }
 
 .subtitle {
 	font-size: 3em;
 	margin: 0 0 0 .5em;
-	font-family: Lora, serif;
-	font-weight: 500;
-	font-style: italic
 }
 
 .diagram {
@@ -171,38 +116,6 @@ canvas {
 
 .scramble {
 	font-family: Bungee, cursive
-}
-
-@media (max-width:800px) {
-	.title {
-		font-size: 3em
-	}
-}
-
-@media (max-width:480px) {
-	.title {
-		font-size: 2em
-	}
-}
-
-.intro {
-	margin-bottom: .75em;
-	font-family: Lora, serif;
-	font-weight: 400;
-	font-style: italic
-}
-
-.fab,
-.fas {
-	padding: .25em;
-	text-align: center;
-	text-decoration: none;
-	color: #fff
-}
-
-.fab:hover,
-.fas:hover {
-	opacity: .7
 }
 
 .dismiss-info {
@@ -270,15 +183,3 @@ canvas {
 .ui.hidden:hover {
 	opacity: 1
 }
-
-.footer-link {
-	position: fixed;
-	left: 50%;
-	bottom: 20px;
-	transform: translate(-50%, -50%);
-	margin: 0 auto;
-	font-family: Lora, serif;
-	font-weight: 400;
-	font-size: .75em
-}
-
