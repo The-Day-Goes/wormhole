@@ -108,6 +108,7 @@ canvas {
 .subtitle {
 	font-size: 3em;
 	margin: 0 0 0 .5em;
+	font-family: Lora, serif
 }
 
 .diagram {
