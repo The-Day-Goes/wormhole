@@ -108,18 +108,24 @@ canvas {
 .subtitle {
 	font-size: 3em;
 	margin: 0 0 0 .5em;
-	font-family: 'Source Code Pro', monospace;
+	font-family: Lora, serif;
 	font-style: normal
 }
 
 .diagram {
-	font-family: 'Source Code Pro', monospace;
+	font-family: Lora, serif
 }
 
 .scramble {
 	font-family: Bungee, cursive
 }
 
+.dismiss-info {
+	margin: .75em 0 1em 0;
+	font-family: Lora, serif;
+	font-weight: 400;
+	font-style: italic
+}
 
 .ui {
 	position: fixed;
