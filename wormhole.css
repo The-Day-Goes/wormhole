@@ -113,7 +113,7 @@ canvas {
 }
 
 .diagram {
-	font-family: Lora, serif
+	font-family: 'Source Code Pro', monospace
 }
 
 .scramble {
@@ -122,7 +122,7 @@ canvas {
 
 .dismiss-info {
 	margin: .75em 0 1em 0;
-	font-family: Lora, serif;
+	font-family: 'Source Code Pro', monospace;
 	font-weight: 400;
 	font-style: italic
 }
@@ -184,4 +184,27 @@ canvas {
 
 .ui.hidden:hover {
 	opacity: 1
+}
+
+.streaming-links {
+  font-size: 22px;
+  height: 55px;
+  line-height: 55px;
+  margin: 0 auto;
+  width: 255px;
+  border: solid 2px #fff;
+  color: #fbffe2;
+  background-color: #000;
+  border-radius: 0;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+
+}
+
+.streaming-links a {
+	color: #fbffe2;
+	text-decoration: none;
+	background-color: transparent;
 }
