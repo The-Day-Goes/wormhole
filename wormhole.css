@@ -248,6 +248,6 @@ section .gradient, .bank-note {
 	opacity: 1;
 }
 
-.mobile-header {
+.mobile-header, .header-store, body {
 	background-color: #000;
 }
