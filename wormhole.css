@@ -247,3 +247,7 @@ section .gradient, .bank-note {
 .welcome-messaging {
 	opacity: 1;
 }
+
+.mobile-header {
+	background-color: #000;
+}
