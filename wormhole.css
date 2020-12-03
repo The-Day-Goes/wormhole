@@ -240,14 +240,6 @@ footer .footer-section.footer-social ul li a:hover svg {
 	fill: #303030;
 }
 
-section .gradient, .bank-note {
-	opacity: 0.4;
-}
-
-.welcome-messaging {
-	opacity: 1;
-}
-
 .mobile-header, .header-store, body {
 	background-color: #000;
 }
