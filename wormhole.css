@@ -239,3 +239,7 @@ footer .footer-section.footer-social ul li a svg {
 footer .footer-section.footer-social ul li a:hover svg {
 	fill: #303030;
 }
+
+.bank-note {
+	opacity: 0.4;
+}
