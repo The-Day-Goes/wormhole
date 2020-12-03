@@ -52,7 +52,7 @@ a {
 
 .title {
 	font-size: 4em;
-	margin: 0 0 3em 0;
+	margin: 0 0 0.5em 0;
 }
 
 @media (max-width:800px) {
@@ -224,4 +224,10 @@ ol.unstyled, ul.unstyled {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.welcome .welcome-messaging h2.headline {
+  font-size: 60px;
+  line-height: 65px;
+  margin: 20px 0 30px 0;
 }

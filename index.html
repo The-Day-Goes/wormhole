@@ -8,29 +8,70 @@
       <title>Washcycle Wormhole</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-      <meta name="description" content="Experience mind-bending spacetime effects by entering the Washcycle Wormhole.">
-      <link href="legacy_assets/main.css" rel="stylesheet">
-      <link href="wormhole.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap&effect=anaglyph" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@1,400;1,500&display=swap&effect=anaglyph" rel="stylesheet">
+      <!-- Meta tags -->
+      <meta name="author" content="The Day Goes" />
+      <meta name="description" content="Enter the Washcycle Wormhole, an immersive audio-visual spacetime experience." />
+      <meta name="referrer" content="origin" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="The Day Goes" />
+      <meta property="og:title" content="The Day Goes" />
+      <meta property="og:url" content="https://daygoes.com/wormhole" />
+      <meta property="og:description" content="Enter the Washcycle Wormhole, an immersive audio-visual spacetime experience." />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="The Day Goes" />
+      <meta name="twitter:description" content="Enter the Washcycle Wormhole, an immersive audio-visual spacetime experience." />
+      <!-- End meta tags -->
+      <!-- Link tags -->
+      <link rel="canonical" href="https://daygoes.com/wormhole" />
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Source+Code+Pro&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap&effect=anaglyph" rel="stylesheet">
+      <!-- End link tags -->
       <script src="https://kit.fontawesome.com/50c158ceef.js" crossorigin="anonymous"></script>
+
+      <link href="../assets/styles/main.css" rel="stylesheet">
+      <link href="wormhole.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap&effect=anaglyph" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Source+Code+Pro&display=swap" rel="stylesheet">
+      
    </head>
-   <body>
+   <body id="home" class="theme">
       <div id="canvas-wrapper"></div>
-      <div class="splash screen">
-         <h1 class="title scramble font-effect-anaglyph">WASHCYCLE WORMHOLE</h1>
-         <p class="intro">AN INTERACTIVE AUDIO-VISUAL EXPERIENCE BY</p>
-         <h3 class="title subtitle font-effect-anaglyph">THE DAY GOES</h3>
-         <div class="streaming-links">
+      <div class="splash screen wrap">
+        <div class="mobile-header">
+        <div class="header-store has-logo">
+          <a href="https://daygoes.com" title="The Day Goes" class="header-store-link">
+          <img class="header-store-logo" alt="The Day Goes" src="../assets/images/site_logo_400px.jpg?auto=format&fit=max&h=400&w=400">
+          </a>
+          <div class="gradient"></div>
+          <div class="gradient"></div>
+        </div>
+      </div>
+      <div class="desktop-header-store-name">
+        <div class="desktop-header header-store has-logo">
+          <a href="https://daygoes.com" title="The Day Goes" class="header-store-link">
+          <img class="header-store-logo" src="../assets/images/site_logo_400px.jpg?auto=format&fit=max&h=400&w=400" alt="The Day Goes">
+          </a>
+          <div class="gradient"></div>
+          <div class="gradient"></div>
+        </div>
+      </div>
+        <section class="home-welcome welcome">
+        <div class="welcome-messaging">
+          <p class="subheader">AN INTERACTIVE AUDIO-VISUAL EXPERIENCE</p>
+          <h2 class="headline title scramble font-effect-anaglyph">WASHCYCLE WORMHOLE</h2>
+          <div class="streaming-links">
             <a href="https://open.spotify.com/artist/1OsSYnwC0OL9s1rjekDEVe"><i class="fab fa-spotify fa-lg"></i></a>
             <a href="https://music.apple.com/us/artist/the-day-goes/1509380838"><i class="fab fa-apple fa-lg"></i></a>
             <a href="https://thedaygoes.bandcamp.com/"><i class="fab fa-bandcamp fa-lg"></i></a>
             <a href="https://soundcloud.com/the-day-goes"><i class="fab fa-soundcloud fa-lg"></i></a>
             <a href="https://www.youtube.com/channel/UCKjE9G_ofm3nkD9oWVXt-Cg"><i class="fab fa-youtube fa-lg"></i></a>
           </div>
-         <p class="dismiss-info"><br>CLICK OR TAP ANYWHERE TO CONTINUE</p>
+          <p class="dismiss-info subheader"><br>CLICK OR TAP ANYWHERE TO CONTINUE</p>
+        </div>
+        <div class="pattern bank-note"></div>
+      </section>
          <footer>
         <div class="footer-section footer-store-name">
           The Day Goes
@@ -71,6 +112,16 @@
          </svg>
       </button>
       <script src="wormhole.js" type="text/javascript"></script> 
+      <script src="../assets/scripts/jquery.min.js"></script>
+      <script>
+        var themeOptions = {
+          pageCategory: 'theme',
+          pagePermalink: 'home',
+          primaryGradientColor: '#ff0000',
+          secondaryGradientColor: '#00ff00'
+        };
+      </script>
+      <script src="../assets/scripts/theme.js"></script>
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177620095-1"></script>
       <script>
