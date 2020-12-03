@@ -107,7 +107,7 @@ canvas {
 
 .subtitle {
 	font-size: 3em;
-	margin: 0 0 0 .5em;
+	margin: 20px 0 30px 0;
 	font-family: Lora, serif;
 	font-style: normal
 }
@@ -200,10 +200,12 @@ canvas {
   text-align: center;
   text-decoration: none;
   text-shadow: none;
-
 }
 
-.streaming-links a {
+.streaming-links a:hover {
+	color: #cfcfcf;
+}
+a {
 	color: #fbffe2;
 	text-decoration: none;
 	background-color: transparent;
