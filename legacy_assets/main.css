@@ -19,6 +19,7 @@ body {
 	color: #FBFFE2 ;
 	font-family: -apple-system, 'Source Code Pro', monospace;
 	font-weight: normal;
+  line-height: 1.5em;
 }
 
 p {
@@ -51,7 +52,7 @@ a {
 
 .title {
 	font-size: 4em;
-	margin: 0 0 .5em;
+	margin: 0 0 3em 0;
 }
 
 @media (max-width:800px) {
